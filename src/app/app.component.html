@@ -1,0 +1,58 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <!--
+  <ul>
+     <li *ngFor="let user of users">{{ user.cust_name }}</li>
+  </ul>
+  <div *ngFor="let user of users">
+        Customer num: <input type="text" value="{{ user.cust_num }}"><br>
+        Customer name: <input type="text" value="{{ user.cust_name }}"><br>
+  </div>
+  <div>
+      <button (click)="onClickMe()">Click</button><br>
+      Test onclick: <input type="text" value="{{ textreturn }}"><br>
+  </div>
+-->
+  <div class="container">
+    <form (ngSubmit)="onSubmit(custForm.value)" #custForm="ngForm">
+      <div class="row m-t-20">
+        <h1>Customer Info</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="custNum">Customer Num: </label>
+          <!--<input type="text" class="form-control" #searchBox id="custNum" name="custNum" ngModel>-->
+          <input type="text" class="form-control" #searchBox id="custNum" [(ngModel)]="userGet.num" name="num">
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="custName">Customer Name: </label>
+          <!--<input *ngFor="let user of users" type="text" class="form-control" id="custName" value="{{ user.cust_name }}">-->
+          <input type="text" class="form-control" id="custName" value="{{ userGet.name }}">
+        </div>
+      </div>
+        <!--Orders-->
+      <div class="row m-t-20">
+        <h1>Order Info</h1>
+      </div>
+      <div class="row">
+        <div>
+          <div class="col-md-6 form-group">
+            <label for="ordNum">Order Num: </label>
+            <input type="text" class="form-control" id="ordNum" [(ngModel)]="order.num" name="num">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="ordDate">Order Date: </label>
+            <input type="text" class="form-control" id="ordDate" [(ngModel)]="order.date" name="date">
+          </div>
+        </div>
+      </div>
+      <div [hidden]="!succeed"><h6>Order submitted successfully.</h6></div>
+      <!--<div><h6>{{ return }}</h6></div>-->
+      <input type="button" class="btn" (click)="reset()" value="Reset" />
+      <input type="button" class="btn" (click)="loadData(custForm.value)" value="Load Data" />
+      <button type="submit" class="btn btn-success">Submit</button>
+      <!--<input type="button" (click)="onClickMe(searchBox.value)" value="Submit" />
+      <input type="submit" (click)="onClickMe()" value="Save" />-->
+    </form>
+  </div>
+</div>
