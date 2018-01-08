@@ -33,12 +33,32 @@ export class DataService {
       .map(result => this.result = result.json().data);*/
   }
 
-  orderSubmit(userInfo: User, orderInfo: Order) {
-    const postInfo = {custNum: userInfo.num, ordNum: orderInfo.num, ordDate: orderInfo.date};
-    return this._http.post("/api/orderSubmit", postInfo)
+  getOrder(inputInfo: string) {
+    console.log('getOrder:'+inputInfo);
+    const postInfo = {ordNum: inputInfo};
+    return this._http.post("/api/order", postInfo)
       .map(result => this.result = result.json().data);
       /*return this._http.get("/api/usersByNum")
       .map(result => this.result = result.json().data);*/
+  }
+
+  orderSubmit(userInfo: User, orderInfo: Order) {
+    //const postInfo = {custNum: userInfo.num, ordNum: orderInfo.num, ordDate: orderInfo.date};
+    const postInfo = {user: userInfo, order: orderInfo};
+    return this._http.post("/api/orderSubmit", postInfo)
+      .map(result => this.result = result.json().data);
+  }
+
+  orderUpdate(userInfo: User, orderInfo: Order) {
+    const postInfo = {user: userInfo, order: orderInfo};
+    return this._http.post("/api/orderUpdate", postInfo)
+      .map(result => this.result = result.json().data);
+  }
+
+  custUpdate(userInfo: User) {
+    const postInfo = {user: userInfo};
+    return this._http.post("/api/custUpdate", postInfo)
+      .map(result => this.result = result.json().data);
   }
 
 }
